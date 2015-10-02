@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public Boundary boundary;
 
+   
+
     // PRIVATE INSTANCE VARIABLES
     private Vector2 _newPosition = new Vector2(0.0f, 0.0f);
 
@@ -45,12 +47,12 @@ public class PlayerController : MonoBehaviour {
     {
         if (this._newPosition.x < this.boundary.minX)
         {
-            this._newPosition.x = this.boundary.maxX;
+            this._newPosition.x = this.boundary.minX;
         }
 
-        if (this._newPosition.x > this.boundary.minY)
+        if (this._newPosition.x > this.boundary.maxX)
         {
-            this._newPosition.x = this.boundary.maxY;
+            this._newPosition.x = this.boundary.maxX;
         }
     }
 }

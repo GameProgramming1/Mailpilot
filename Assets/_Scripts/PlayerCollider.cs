@@ -16,6 +16,7 @@ public class PlayerCollider : MonoBehaviour {
     private AudioSource[] _audioSources; //array of audio sources
     private AudioSource _CloudAudioSource;
     private AudioSource _IslandAudioSource;
+    private AudioSource _EndingSound;
    
 
 
@@ -24,6 +25,7 @@ public class PlayerCollider : MonoBehaviour {
         this._audioSources = this.GetComponents<AudioSource> ();
         this._CloudAudioSource = this._audioSources[1];//reference cloud sound
 	this._IslandAudioSource = this._audioSources[2];
+    this._EndingSound = this._audioSources[3];
     this.gameOverLabel.enabled = false;
     this.finalScoreLabel.enabled = false;
 
@@ -48,6 +50,8 @@ public class PlayerCollider : MonoBehaviour {
             this._liveValue--; //remove 1 life
             if (this._liveValue <= 0)
             {
+                this._EndingSound.Play();
+                //yield return new WaitForSeconds(300);
                 this._EndGame();
             }
 
@@ -57,8 +61,8 @@ public class PlayerCollider : MonoBehaviour {
 
     private void _setScore()
     {
-        this.scorelabel.text = "Score: " + this._scoreValue;
-        this.livesLabel.text = "Lives: " + this._liveValue;
+        this.scorelabel.text = "Score : " + this._scoreValue;
+        this.livesLabel.text = "Lives : " + this._liveValue;
     
     }
 
@@ -69,6 +73,7 @@ public class PlayerCollider : MonoBehaviour {
         this.livesLabel.enabled = false;
         this.gameOverLabel.enabled = true;
         this.finalScoreLabel.enabled = true;
-        this.finalScoreLabel.text = "Score:" + this._scoreValue;
+        this.finalScoreLabel.text = "Score :" + this._scoreValue;
+        
     }
 }
